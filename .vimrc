@@ -51,6 +51,8 @@ Plug 'Shougo/neosnippet-snippets'
 Plug 'tpope/vim-fugitive'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'flazz/vim-colorschemes'
+Plug 'simeji/winresizer'
+Plug 'itchyny/lightline.vim'
 
 ":NERDTree でファイルをtree表示してくれる
 Plug 'scrooloose/nerdtree'
@@ -182,4 +184,12 @@ if has("autocmd")
     \ endif
 endif
 
+"WinResizer
+let g:winresizer_vert_resize = 2
+let g:winresizer_horiz_resize = 2
 
+"lightline
+let g:lightline = {'colorscheme': 'wombat',}
+if !has('gui_running')
+      set t_Co=256
+endif
