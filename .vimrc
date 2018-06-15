@@ -53,6 +53,10 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'flazz/vim-colorschemes'
 Plug 'simeji/winresizer'
 Plug 'itchyny/lightline.vim'
+Plug 'Yggdroot/indentLine'
+Plug 'rhysd/clever-f.vim'
+
+
 
 ":NERDTree でファイルをtree表示してくれる
 Plug 'scrooloose/nerdtree'
@@ -193,3 +197,7 @@ let g:lightline = {'colorscheme': 'wombat',}
 if !has('gui_running')
       set t_Co=256
 endif
+
+"indentline
+let g:indentLine_char = '|'
+
