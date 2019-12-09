@@ -1,5 +1,6 @@
 set encoding=utf-8
 "set fileencodings=iso-2022-jp,cp932,sjis,euc-jp,utf-8
+set helplang=ja,en
 
 set showcmd     " Show (partial) command in status line.
 set showmatch       " Show matching brackets.
@@ -12,6 +13,7 @@ set expandtab
 set tabstop=4
 set shiftwidth=4
 set wrapscan
+set formatoptions+=mMj
 "ファイル名表示
 set statusline=%F
 " 変更チェック表示
@@ -38,8 +40,28 @@ set hlsearch
 set background=dark
 
 colorscheme desert
-syntax on
 
+"誤字修正
+ab appned append
+
+"矢印キーで画面上の１行単位で移動するように
+map <Up> gk
+map <Down> gj
+
+"Shift + 矢印キーでウィンドウサイズ変更
+nnoremap <S-Left>  <C-w><<CR>
+nnoremap <S-Right> <C-w>><CR>
+nnoremap <S-Up>    <C-w>-<CR>
+nnoremap <S-Down>  <C-w>+<CR>
+
+"w!!　でsudoで保存
+cabbr w!! w !sudo tee > /dev/null %
+
+"Kでヘルプを引く
+set keywordprg=:help
+
+"矩形選択モードでなにもないところにもカーソルが移動できる
+set virtualedit=block
 
 "vimplug==============================================
 call plug#begin('~/.vim/plugged')
@@ -55,6 +77,9 @@ Plug 'simeji/winresizer'
 Plug 'itchyny/lightline.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'rhysd/clever-f.vim'
+Plug 'kana/vim-operator-user'
+Plug 'rhysd/vim-operator-surround'
+Plug 'vim-jp/vimdoc-ja'
 
 
 
@@ -74,10 +99,10 @@ xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 " SuperTab like snippets behavior.
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-"imap <expr><TAB>
-" \ pumvisible() ? "\<C-n>" :
-" \ neosnippet#expandable_or_jumpable() ?
-" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+imap <expr><TAB>
+ \ pumvisible() ? "\<C-n>" :
+ \ neosnippet#expandable_or_jumpable() ?
+ \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
@@ -121,6 +146,11 @@ inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y>  neocomplcache#close_popup()
 inoremap <expr><C-e>  neocomplcache#cancel_popup()
+
+"vim-operator-surround
+map <silent>sa <Plug>(operator-surround-append)
+map <silent>sd <Plug>(operator-surround-delete)
+map <silent>sr <Plug>(operator-surround-replace)
 
 call plug#end()
 "vimplug==end========================================================
@@ -201,3 +231,5 @@ endif
 "indentline
 let g:indentLine_char = '|'
 
+
+syntax on
