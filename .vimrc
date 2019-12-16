@@ -85,6 +85,7 @@ Plug 'vim-jp/vimdoc-ja'
 
 ":NERDTree でファイルをtree表示してくれる
 Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 "Ruby向けにendを自動挿入してくれる
 Plug 'tpope/vim-endwise'
 "行末の半角スペースを可視化
@@ -218,7 +219,7 @@ if has("autocmd")
     \ endif
 endif
 
-"WinResizer
+"WinResizer(Ctrl-e)
 let g:winresizer_vert_resize = 2
 let g:winresizer_horiz_resize = 2
 
